@@ -1,69 +1,91 @@
 import Image from "next/image";
+import { profile, projects } from "../lib/content";
+import Nav from "../components/Nav";
+
+function CardLink({
+  href,
+  children,
+}: {
+  href?: string;
+  children: React.ReactNode;
+}) {
+  if (!href) return <div>{children}</div>;
+  return (
+    <a href={href} target="_blank" rel="noreferrer" className="block">
+      {children}
+    </a>
+  );
+}
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+    <>
+      <Nav />
+      <main>
+        <section id="top" className="flex min-h-[50svh] items-center">
+          <div className="mx-auto w-full max-w-6xl px-6 py-16">
+            <p className="text-sm text-neutral-400">{profile.role}</p>
+            <h1 className="font-display mt-3 text-5xl font-semibold leading-[1.02] tracking-tight sm:text-7xl md:text-8xl">
+              {profile.name}
+            </h1>
+            <p className="mt-5 max-w-md text-neutral-400">{profile.intro}</p>
+            <div className="mt-7 flex gap-3">
+              <a
+                href="#work"
+                className="rounded-full bg-[#ffd84d] px-5 py-2.5 text-sm font-medium text-[#1e1e1e] transition-colors hover:bg-[#ffe27a]"
+              >
+                View work
+              </a>
+              <a
+              target="_blank"
+                href={profile.resume}
+                className="rounded-full border border-white/20 px-5 py-2.5 text-sm text-neutral-200 transition-colors hover:border-white/40"
+              >
+                Resume
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <section id="work" className="mx-auto max-w-6xl px-6 pb-24">
+          <h2 className="font-display text-2xl font-medium">Selected work</h2>
+          <div className="mt-6 grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+            {projects.map((p) => (
+              <article key={p.title} className="group">
+                <CardLink href={p.href}>
+                  <div
+                    className="relative aspect-[4/3] overflow-hidden rounded-xl border border-white/10"
+                    style={{ backgroundColor: p.tint }}
+                  >
+                    {p.image ? (
+                      <Image
+                        src={p.image}
+                        alt={p.title}
+                        fill
+                        sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                        className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                      />
+                    ) : (
+                      <span
+                        className="absolute inset-0 grid place-items-center text-sm font-medium"
+                        style={{ color: p.ink }}
+                      >
+                        {p.title}
+                      </span>
+                    )}
+                  </div>
+                  <div className="mt-3 flex items-baseline justify-between gap-4">
+                    <h3 className="font-display text-base font-medium">
+                      {p.title}
+                    </h3>
+                    <p className="text-sm text-neutral-500">{p.category}</p>
+                  </div>
+                </CardLink>
+              </article>
+            ))}
+          </div>
+        </section>
       </main>
-    </div>
+    </>
   );
 }
