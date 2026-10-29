@@ -26,19 +26,81 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    title: "Abizec - Perfume Ad",
+    image: "/projects/abizec-perfume.png",
+    category: "Social Media design",
+    tint: "#CECBF6",
+    ink: "#26215C",
+  },
+  {
+    title: "Radio Station Web design",
+    image: "/projects/chiyapasal.png",
+    category: "UI/UX",
+    tint: "#CECBF6",
+    ink: "#26215C",
+  },
+  {
+    title: "Extrack Web design",
+    image: "/projects/extrack2026.png",
+    category: "UI/UX",
+    tint: "#CECBF6",
+    ink: "#26215C",
+  },
+  {
     title: "Himalayan Yak",
     image: "/projects/advert.png",
     category: "Brand identity",
     tint: "#CECBF6",
     ink: "#26215C",
   },
+ 
   {
+    title: "Promotional Ad",
+    image: "/projects/socialmedia.png",
+
+    category: "Social Media Ad",
+    tint: "#9FE1CB",
+    ink: "#04342C",
+  },
+   {
+    title: "Portfolio Website Design",
+    image: "/projects/portfolio2026.png",
+
+    category: "UI/UX",
+    tint: "#9FE1CB",
+    ink: "#04342C",
+  },
+   {
+    title: "TasteHome Logo design",
+    image: "/projects/tastehome.png",
+
+    category: "Logo design",
+    tint: "#9FE1CB",
+    ink: "#04342C",
+  },
+   {
+    title: "Abizec Logo",
+    image: "/projects/abizec-logo.png",
+
+    category: "Photography",
+    tint: "#9FE1CB",
+    ink: "#04342C",
+  },
+   {
     title: "Lights in the rain",
     image: "/projects/contactimg.jpg",
 
-    category: "Packaging",
+    category: "Photography",
     tint: "#9FE1CB",
     ink: "#04342C",
+  },
+  {
+    title: "Cheetos Ad - College Project",
+    image: "/projects/cheetosmockup.png",
+
+    category: "Art direction",
+    tint: "#F5C4B3",
+    ink: "#4A1B0C",
   },
   {
     title: "Lays Ad - College Project",
@@ -58,7 +120,7 @@ export const projects: Project[] = [
   },
   {
     title: "Waterbottle Ad",
-    image: "/projects/waterbottle.png",
+    image: "/projects/waterBottle.png",
 
     category: "Social campaign",
     tint: "#B5D4F4",
@@ -74,7 +136,7 @@ export const projects: Project[] = [
   },
   {
     title: "Portfolio design",
-    image: "/projects/portfolioapp.jpg  ",
+    image: "/projects/portfolioapp.jpg",
 
     category: "Logo design",
     tint: "#F4C0D1",
